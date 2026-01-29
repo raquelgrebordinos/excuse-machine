@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Excuse {
+  id         String   @id @default(cuid())
+  excuseText String   @map("excuse_text")
+  votes      Int      @default(0)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("excuses")
+}
